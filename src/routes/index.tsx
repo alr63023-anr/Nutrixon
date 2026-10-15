@@ -96,6 +96,27 @@ function Index() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-6xl px-4 pb-14">
+        <h2 className="text-2xl font-bold">Everything in Nutrixon</h2>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {(
+            [
+              ["/products", "Products", "Search and filter foods by score, junk % and approval."],
+              ["/scan", "Scan a barcode", "Look up a pack by its barcode number."],
+              ["/approvals", "Approval list", "Approved, under review and not approved products."],
+              ["/learn", "Learn", "How sugar, salt, fats and additives affect your health."],
+              ["/register", "Register a product", "Companies submit products for review and approval."],
+              ["/tasks", "Task tracker", "Organise tasks by status, due date and progress."],
+            ] as const
+          ).map(([to, t, d]) => (
+            <Link key={to} to={to} className="card-surface p-5 transition-shadow hover:shadow-lift">
+              <h3 className="text-lg font-bold">{t}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{d}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <section className="mx-auto max-w-6xl px-4 pb-16">
         <div className="grid gap-4 sm:grid-cols-3">
           {[
