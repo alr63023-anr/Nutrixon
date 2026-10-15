@@ -200,13 +200,13 @@ export function findMissing(s: ScreeningInput): MissingItem[] {
     ["satFat", "Saturated fat"],
     ["sodium", "Sodium"],
   ];
-  const nutritionBad = nutrition.filter(([, label]) => {
-    const v = num(s[label === "Saturated fat" ? "satFat" : label === "Energy" ? "kcal" : label]);
+  const nutritionBad = nutrition.filter(([key]) => {
+    const v = num(s[key] as string);
     return v === null || v < 0;
   });
   need(
     "nutrition",
-    `Nutrition per 100 g (${nutritionBad.map(([, l]) => l).join(", ")})`,
+    `Nutrition per 100 g (${nutritionBad.map(([, pretty]) => pretty).join(", ")})`,
     "Nutrient figures per 100 g are needed to check the limits.",
     nutritionBad.length > 0,
   );
