@@ -1,0 +1,155 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Nutrixon design system: warm cream paper, deep leaf green, saffron accent.
+ * Traffic-light tokens (good / warn / bad) drive every verdict in the app.
+ * All colors use oklch.
+ */
+
+@theme inline {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-good: var(--good);
+  --color-good-foreground: var(--good-foreground);
+  --color-good-soft: var(--good-soft);
+  --color-warn: var(--warn);
+  --color-warn-foreground: var(--warn-foreground);
+  --color-warn-soft: var(--warn-soft);
+  --color-bad: var(--bad);
+  --color-bad-foreground: var(--bad-foreground);
+  --color-bad-soft: var(--bad-soft);
+  --color-hero: var(--hero);
+  --color-hero-foreground: var(--hero-foreground);
+  --shadow-soft: var(--shadow-soft);
+  --shadow-lift: var(--shadow-lift);
+}
+
+:root {
+  --radius: 0.9rem;
+  --background: oklch(0.982 0.014 95);
+  --foreground: oklch(0.24 0.04 160);
+  --card: oklch(0.998 0.004 95);
+  --card-foreground: oklch(0.24 0.04 160);
+  --popover: oklch(0.998 0.004 95);
+  --popover-foreground: oklch(0.24 0.04 160);
+  --primary: oklch(0.42 0.1 155);
+  --primary-foreground: oklch(0.985 0.01 95);
+  --secondary: oklch(0.945 0.03 100);
+  --secondary-foreground: oklch(0.3 0.06 160);
+  --muted: oklch(0.955 0.018 95);
+  --muted-foreground: oklch(0.48 0.03 160);
+  --accent: oklch(0.82 0.15 75);
+  --accent-foreground: oklch(0.25 0.05 60);
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: oklch(0.985 0.01 95);
+  --border: oklch(0.9 0.02 100);
+  --input: oklch(0.88 0.025 100);
+  --ring: oklch(0.55 0.1 155);
+
+  --good: oklch(0.52 0.15 150);
+  --good-foreground: oklch(0.985 0.01 150);
+  --good-soft: oklch(0.94 0.055 150);
+  --warn: oklch(0.8 0.16 78);
+  --warn-foreground: oklch(0.28 0.06 70);
+  --warn-soft: oklch(0.955 0.06 90);
+  --bad: oklch(0.55 0.21 27);
+  --bad-foreground: oklch(0.985 0.01 27);
+  --bad-soft: oklch(0.945 0.04 27);
+
+  --hero: oklch(0.32 0.075 158);
+  --hero-foreground: oklch(0.97 0.02 95);
+
+  --shadow-soft: 0 1px 2px oklch(0.3 0.05 160 / 6%), 0 8px 24px -12px oklch(0.3 0.05 160 / 14%);
+  --shadow-lift: 0 2px 4px oklch(0.3 0.05 160 / 8%), 0 18px 40px -16px oklch(0.3 0.05 160 / 26%);
+}
+
+.dark {
+  --background: oklch(0.2 0.03 160);
+  --foreground: oklch(0.96 0.015 95);
+  --card: oklch(0.25 0.035 160);
+  --card-foreground: oklch(0.96 0.015 95);
+  --popover: oklch(0.25 0.035 160);
+  --popover-foreground: oklch(0.96 0.015 95);
+  --primary: oklch(0.75 0.13 155);
+  --primary-foreground: oklch(0.2 0.03 160);
+  --secondary: oklch(0.3 0.04 160);
+  --secondary-foreground: oklch(0.96 0.015 95);
+  --muted: oklch(0.3 0.04 160);
+  --muted-foreground: oklch(0.72 0.03 160);
+  --accent: oklch(0.8 0.15 75);
+  --accent-foreground: oklch(0.25 0.05 60);
+  --destructive: oklch(0.65 0.2 25);
+  --destructive-foreground: oklch(0.985 0.01 95);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(0.6 0.1 155);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .card-surface {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .hero-surface {
+    background-color: var(--color-hero);
+    color: var(--color-hero-foreground);
+    background-image:
+      radial-gradient(circle at 85% 10%, oklch(0.82 0.15 75 / 28%), transparent 45%),
+      radial-gradient(circle at 5% 100%, oklch(0.6 0.13 155 / 35%), transparent 50%);
+  }
+}
