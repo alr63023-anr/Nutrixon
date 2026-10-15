@@ -132,6 +132,7 @@ const nav = [
   { to: "/scan", label: "Scan" },
   { to: "/approvals", label: "Approvals" },
   { to: "/learn", label: "Learn" },
+  { to: "/register", label: "Register" },
   { to: "/tasks", label: "Tasks" },
 ] as const;
 
