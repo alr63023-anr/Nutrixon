@@ -1,5 +1,7 @@
 # Roadmap
 
-- [x] Nutrixon: home, products search, product detail (junk % + eat score), barcode scan, approvals list, learn pages (India / FSSAI context, sample data)
-- [x] Task tracker: /tasks page — status columns, due dates, progress (saved on this device)
-- [ ] Verify in browser
+- [x] Nutrixon: home, products search, product detail, barcode scan, approvals list, learn pages
+- [x] Task tracker: /tasks page with status columns, due dates, progress
+- [x] Verified in browser
+- [ ] Real product data and official approvals — waits on the user's data source
+- [ ] Sign-in and saving tasks/products across devices — needs Lovable Cloud (not enabled yet)
