@@ -42,6 +42,6 @@ export function testSummary(p: Product) {
 
 export const resultMeta: Record<TestResult, { label: string; chip: string; icon: string }> = {
   pass: { label: "Passed", chip: "bg-good-soft text-good", icon: "✓" },
-  pending: { label: "Pending", chip: "bg-warn-soft text-warn", icon: "…" },
+  pending: { label: "Pending", chip: "bg-warn-soft text-warn-foreground", icon: "…" },
   fail: { label: "Failed", chip: "bg-bad-soft text-bad", icon: "✕" },
 };
