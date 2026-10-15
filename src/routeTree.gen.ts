@@ -14,7 +14,6 @@ import { Route as ApprovalsRouteImport } from './routes/approvals'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ScanRouteImport } from './routes/scan'
-import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
 
@@ -43,11 +42,6 @@ const ScanRoute = ScanRouteImport.update({
   path: '/scan',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TasksRoute = TasksRouteImport.update({
-  id: '/tasks',
-  path: '/tasks',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ProductsIndexRoute = ProductsIndexRouteImport.update({
   id: '/products/',
   path: '/products/',
@@ -65,7 +59,6 @@ export interface FileRoutesByFullPath {
   '/learn': typeof LearnRoute
   '/register': typeof RegisterRoute
   '/scan': typeof ScanRoute
-  '/tasks': typeof TasksRoute
   '/products/$id': typeof ProductsIdRoute
   '/products/': typeof ProductsIndexRoute
 }
@@ -75,7 +68,6 @@ export interface FileRoutesByTo {
   '/learn': typeof LearnRoute
   '/register': typeof RegisterRoute
   '/scan': typeof ScanRoute
-  '/tasks': typeof TasksRoute
   '/products/$id': typeof ProductsIdRoute
   '/products': typeof ProductsIndexRoute
 }
@@ -86,7 +78,6 @@ export interface FileRoutesById {
   '/learn': typeof LearnRoute
   '/register': typeof RegisterRoute
   '/scan': typeof ScanRoute
-  '/tasks': typeof TasksRoute
   '/products/$id': typeof ProductsIdRoute
   '/products/': typeof ProductsIndexRoute
 }
@@ -98,7 +89,6 @@ export interface FileRouteTypes {
     | '/learn'
     | '/register'
     | '/scan'
-    | '/tasks'
     | '/products/$id'
     | '/products/'
   fileRoutesByTo: FileRoutesByTo
@@ -108,7 +98,6 @@ export interface FileRouteTypes {
     | '/learn'
     | '/register'
     | '/scan'
-    | '/tasks'
     | '/products/$id'
     | '/products'
   id:
@@ -118,7 +107,6 @@ export interface FileRouteTypes {
     | '/learn'
     | '/register'
     | '/scan'
-    | '/tasks'
     | '/products/$id'
     | '/products/'
   fileRoutesById: FileRoutesById
@@ -129,7 +117,6 @@ export interface RootRouteChildren {
   LearnRoute: typeof LearnRoute
   RegisterRoute: typeof RegisterRoute
   ScanRoute: typeof ScanRoute
-  TasksRoute: typeof TasksRoute
   ProductsIdRoute: typeof ProductsIdRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
 }
@@ -171,13 +158,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ScanRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tasks': {
-      id: '/tasks'
-      path: '/tasks'
-      fullPath: '/tasks'
-      preLoaderRoute: typeof TasksRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/products/': {
       id: '/products/'
       path: '/products'
@@ -201,7 +181,6 @@ const rootRouteChildren: RootRouteChildren = {
   LearnRoute: LearnRoute,
   RegisterRoute: RegisterRoute,
   ScanRoute: ScanRoute,
-  TasksRoute: TasksRoute,
   ProductsIdRoute: ProductsIdRoute,
   ProductsIndexRoute: ProductsIndexRoute,
 }
