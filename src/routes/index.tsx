@@ -145,7 +145,6 @@ function Index() {
               ["/approvals", "Approval list", "Approved, under review and not approved products."],
               ["/learn", "Learn", "How sugar, salt, fats and additives affect your health."],
               ["/register", "Register a product", "Submit ingredients for pre-launch screening and approval."],
-              ["/tasks", "Task tracker", "Organise tasks by status, due date and progress."],
             ] as const
           ).map(([to, t, d]) => (
             <Link key={to} to={to} className="card-surface p-5 transition-shadow hover:shadow-lift">
