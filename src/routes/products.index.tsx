@@ -5,7 +5,7 @@ import { approvalMeta, healthScore, products, type ApprovalStatus } from "@/lib/
 const statuses: ApprovalStatus[] = ["approved", "review", "not-approved"];
 
 export const Route = createFileRoute("/products/")({
-  validateSearch: (s: Record<string, unknown>): { q?: string; status?: ApprovalStatus } => ({
+  validateSearch: (s: Record<string, unknown>): { q?: string | undefined; status?: ApprovalStatus | undefined } => ({
     q: typeof s.q === "string" && s.q ? s.q : undefined,
     status: statuses.includes(s.status as ApprovalStatus) ? (s.status as ApprovalStatus) : undefined,
   }),
