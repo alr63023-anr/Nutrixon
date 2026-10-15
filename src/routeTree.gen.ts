@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApprovalsRouteImport } from './routes/approvals'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as ScanRouteImport } from './routes/scan'
+import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
 
@@ -36,6 +37,11 @@ const ScanRoute = ScanRouteImport.update({
   path: '/scan',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TasksRoute = TasksRouteImport.update({
+  id: '/tasks',
+  path: '/tasks',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsIndexRoute = ProductsIndexRouteImport.update({
   id: '/products/',
   path: '/products/',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/approvals': typeof ApprovalsRoute
   '/learn': typeof LearnRoute
   '/scan': typeof ScanRoute
+  '/tasks': typeof TasksRoute
   '/products/$id': typeof ProductsIdRoute
   '/products/': typeof ProductsIndexRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/approvals': typeof ApprovalsRoute
   '/learn': typeof LearnRoute
   '/scan': typeof ScanRoute
+  '/tasks': typeof TasksRoute
   '/products/$id': typeof ProductsIdRoute
   '/products': typeof ProductsIndexRoute
 }
@@ -69,21 +77,36 @@ export interface FileRoutesById {
   '/approvals': typeof ApprovalsRoute
   '/learn': typeof LearnRoute
   '/scan': typeof ScanRoute
+  '/tasks': typeof TasksRoute
   '/products/$id': typeof ProductsIdRoute
   '/products/': typeof ProductsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/approvals' | '/learn' | '/scan' | '/products/$id' | '/products/'
+    | '/'
+    | '/approvals'
+    | '/learn'
+    | '/scan'
+    | '/tasks'
+    | '/products/$id'
+    | '/products/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/approvals' | '/learn' | '/scan' | '/products/$id' | '/products'
+  to:
+    | '/'
+    | '/approvals'
+    | '/learn'
+    | '/scan'
+    | '/tasks'
+    | '/products/$id'
+    | '/products'
   id:
     | '__root__'
     | '/'
     | '/approvals'
     | '/learn'
     | '/scan'
+    | '/tasks'
     | '/products/$id'
     | '/products/'
   fileRoutesById: FileRoutesById
@@ -93,6 +116,7 @@ export interface RootRouteChildren {
   ApprovalsRoute: typeof ApprovalsRoute
   LearnRoute: typeof LearnRoute
   ScanRoute: typeof ScanRoute
+  TasksRoute: typeof TasksRoute
   ProductsIdRoute: typeof ProductsIdRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
 }
@@ -127,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ScanRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tasks': {
+      id: '/tasks'
+      path: '/tasks'
+      fullPath: '/tasks'
+      preLoaderRoute: typeof TasksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/': {
       id: '/products/'
       path: '/products'
@@ -149,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApprovalsRoute: ApprovalsRoute,
   LearnRoute: LearnRoute,
   ScanRoute: ScanRoute,
+  TasksRoute: TasksRoute,
   ProductsIdRoute: ProductsIdRoute,
   ProductsIndexRoute: ProductsIndexRoute,
 }
