@@ -15,7 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-[60vh] items-center justify-center px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
@@ -78,16 +78,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Nutrixon: Know what's in your food" },
+      {
+        name: "description",
+        content:
+          "Check Indian packaged foods for junk percentage, health score and food safety approval status.",
+      },
+      { property: "og:title", content: "Nutrixon: Know what's in your food" },
+      {
+        property: "og:description",
+        content:
+          "Check Indian packaged foods for junk percentage, health score and food safety approval status.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&display=swap",
+      },
       {
         rel: "stylesheet",
         href: appCss,
@@ -115,13 +127,63 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+const nav = [
+  { to: "/products", label: "Products" },
+  { to: "/scan", label: "Scan" },
+  { to: "/approvals", label: "Approvals" },
+  { to: "/learn", label: "Learn" },
+  { to: "/tasks", label: "Tasks" },
+] as const;
+
+function Logo() {
+  return (
+    <Link to="/" className="flex items-center gap-2">
+      <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+        <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M5 19c0-8 5-13 14-14 0 9-5 14-14 14Z" />
+          <path d="M5 19c3-4 6-7 10-9" />
+        </svg>
+      </span>
+      <span className="font-display text-xl font-extrabold tracking-tight">Nutrixon</span>
+    </Link>
+  );
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="flex min-h-screen flex-col">
+        <header className="sticky top-0 z-20 border-b bg-background/85 backdrop-blur">
+          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-3">
+            <Logo />
+            <nav className="flex items-center gap-1 text-sm font-medium">
+              {nav.map((n) => (
+                <Link
+                  key={n.to}
+                  to={n.to}
+                  className="rounded-full px-3 py-1.5 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                  activeProps={{ className: "bg-secondary text-foreground" }}
+                >
+                  {n.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        </header>
+        <main className="flex-1">
+          <Outlet />
+        </main>
+        <footer className="border-t bg-secondary/50">
+          <div className="mx-auto max-w-6xl px-4 py-6 text-xs leading-relaxed text-muted-foreground">
+            Nutrixon is an independent information app and is not an official government service. Product
+            data and approval statuses shown here are sample data for demonstration. Always check the
+            pack label and the FSSAI (Food Safety and Standards Authority of India) for official
+            approvals.
+          </div>
+        </footer>
+      </div>
     </QueryClientProvider>
   );
 }
