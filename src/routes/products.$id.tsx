@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ApprovalBadge, ScoreRing } from "@/components/nutri";
+import { ApprovalBadge, GovApprovedTag, GovTestList, ScoreRing } from "@/components/nutri";
 import {
   getProduct,
   healthScore,
@@ -66,7 +66,7 @@ function ProductPage() {
             <h1 className="text-3xl font-extrabold">{p.name}</h1>
             <div className="mt-3 flex flex-wrap items-center gap-2">
               <span className={`rounded-full px-3 py-1 text-sm font-bold ${meta.badge}`}>{meta.label}</span>
-              <ApprovalBadge status={p.approval} />
+              {p.approval === "approved" ? <GovApprovedTag product={p} size="lg" /> : <ApprovalBadge status={p.approval} />}
             </div>
             <p className="mt-3 text-sm text-muted-foreground">Barcode {p.barcode}</p>
           </div>
@@ -120,6 +120,13 @@ function ProductPage() {
               <ApprovalBadge status={p.approval} />
             </div>
             <p className="mt-3 text-sm text-muted-foreground">{p.approvalNote}</p>
+          </section>
+          <section className="card-surface p-6">
+            <h2 className="text-xl font-bold">Government safety tests</h2>
+            <p className="mt-1 text-xs text-muted-foreground">
+              Tests a product must pass before it is approved to eat. Sample results, not real lab reports.
+            </p>
+            <GovTestList product={p} />
           </section>
           <section className="card-surface p-6">
             <h2 className="text-xl font-bold">Additives</h2>

@@ -7,6 +7,7 @@ import {
   verdictOf,
   type Product,
 } from "@/lib/products";
+import { resultMeta, testSummary, testsFor } from "@/lib/govtests";
 
 export function ScoreRing({ score, size = 120 }: { score: number; size?: number }) {
   const r = 44;
@@ -47,6 +48,42 @@ export function ApprovalBadge({ status }: { status: Product["approval"] }) {
   );
 }
 
+export function GovApprovedTag({ product, size = "sm" }: { product: Product; size?: "sm" | "lg" }) {
+  if (product.approval !== "approved") return null;
+  const { passed, total } = testSummary(product);
+  const lg = size === "lg";
+  return (
+    <span
+      className={`inline-flex items-center gap-1.5 rounded-full border-2 border-good bg-good font-bold text-good-foreground shadow-soft ${lg ? "px-4 py-1.5 text-sm" : "px-2.5 py-0.5 text-xs"}`}
+      title="Passed all government safety tests (sample)"
+    >
+      <span aria-hidden>🛡</span> Govt. approved · {passed}/{total} tests
+    </span>
+  );
+}
+
+export function GovTestList({ product }: { product: Product }) {
+  const tests = testsFor(product);
+  return (
+    <ul className="mt-4 divide-y divide-border">
+      {tests.map((t) => {
+        const m = resultMeta[t.result];
+        return (
+          <li key={t.id} className="flex items-start justify-between gap-3 py-3">
+            <div>
+              <p className="text-sm font-semibold">{t.name}</p>
+              <p className="text-xs text-muted-foreground">{t.checks}</p>
+            </div>
+            <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-semibold ${m.chip}`}>
+              {m.icon} {m.label}
+            </span>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
 export function VerdictBadge({ product }: { product: Product }) {
   const m = verdictMeta[verdictOf(healthScore(product))];
   return (
@@ -73,7 +110,7 @@ export function ProductCard({ product }: { product: Product }) {
         <h3 className="truncate text-base font-semibold group-hover:text-primary">{product.name}</h3>
         <div className="mt-2 flex flex-wrap items-center gap-2">
           <VerdictBadge product={product} />
-          <ApprovalBadge status={product.approval} />
+          {product.approval === "approved" ? <GovApprovedTag product={product} /> : <ApprovalBadge status={product.approval} />}
           <span className="text-xs text-muted-foreground">{junk}% junk</span>
         </div>
       </div>

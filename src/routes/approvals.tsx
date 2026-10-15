@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { VerdictBadge } from "@/components/nutri";
+import { govTests } from "@/lib/govtests";
 import { approvalMeta, healthScore, products, type ApprovalStatus } from "@/lib/products";
 
 export const Route = createFileRoute("/approvals")({
@@ -30,6 +31,19 @@ function ApprovalsPage() {
         Approval starts before launch: each product is screened for ingredient concerns and missing information
         first, then reviewed. Here is where each sample product stands.
       </p>
+      <section className="card-surface mt-8 border-2 border-good p-6">
+        <p className="text-xs font-bold uppercase tracking-wider text-good">🛡 Government approved tag</p>
+        <h2 className="mt-1 text-2xl font-bold">The {govTests.length} tests a product must pass to be approved to eat</h2>
+        <ol className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {govTests.map((t, i) => (
+            <li key={t.id} className="rounded-xl bg-good-soft p-3">
+              <p className="text-sm font-bold">{i + 1}. {t.name}</p>
+              <p className="text-xs text-muted-foreground">{t.checks}</p>
+            </li>
+          ))}
+        </ol>
+        <p className="mt-3 text-xs text-muted-foreground">Sample test panel for demonstration; not official FSSAI lab results.</p>
+      </section>
       <div className="mt-8 grid gap-6 lg:grid-cols-3">
         {groups.map((g) => {
           const list = products.filter((p) => p.approval === g.status);
