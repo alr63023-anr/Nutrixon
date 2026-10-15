@@ -97,6 +97,45 @@ function Index() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 pb-14">
+        <p className="text-xs font-bold uppercase tracking-wider text-primary">
+          What makes Nutrixon different
+        </p>
+        <h2 className="mt-2 text-2xl font-bold">Ingredient screening before launch</h2>
+        <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+          Most food apps only tell you what is already on the shelf. Nutrixon checks a product before it
+          reaches you: companies submit the ingredient list, the app runs structured checks against the
+          configured regulatory concerns and missing information, then routes each case for review.
+        </p>
+        <div className="mt-5 grid gap-4 sm:grid-cols-3">
+          {[
+            [
+              "1. Submit",
+              "A company sends the ingredient list, label details and nutrition per 100 g.",
+            ],
+            [
+              "2. Structured checks",
+              "Every ingredient is matched against banned, restricted and watch concerns, and anything missing is listed.",
+            ],
+            [
+              "3. Routed for review",
+              "The case goes to priority review, standard review, or back to the company for information.",
+            ],
+          ].map(([t, d]) => (
+            <div key={t} className="card-surface p-5">
+              <h3 className="text-base font-bold">{t}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{d}</p>
+            </div>
+          ))}
+        </div>
+        <Link
+          to="/register"
+          className="mt-4 inline-block rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
+        >
+          Screen a product
+        </Link>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 pb-14">
         <h2 className="text-2xl font-bold">Everything in Nutrixon</h2>
         <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {(
@@ -105,7 +144,7 @@ function Index() {
               ["/scan", "Scan a barcode", "Look up a pack by its barcode number."],
               ["/approvals", "Approval list", "Approved, under review and not approved products."],
               ["/learn", "Learn", "How sugar, salt, fats and additives affect your health."],
-              ["/register", "Register a product", "Companies submit products for review and approval."],
+              ["/register", "Register a product", "Submit ingredients for pre-launch screening and approval."],
               ["/tasks", "Task tracker", "Organise tasks by status, due date and progress."],
             ] as const
           ).map(([to, t, d]) => (
