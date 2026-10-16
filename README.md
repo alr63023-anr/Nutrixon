@@ -1,4 +1,4 @@
- # NutriXon
+# NutriXon
 
 # Nutrixon – Product Verification and Nutrition Platform
 
@@ -33,11 +33,9 @@ Nutrixon provides a web-based platform for reviewing food product information, i
 
 ## Live Application
 
-[https://nutrixon-w2np.vercel.app/](https://nutrixon-w2np.vercel.app/)
+https://nutrixon-w2np.vercel.app/
 
-## GitHub Repository
 
-[https://github.com/alr63023-anr/Nutrixon](https://github.com/alr63023-anr/Nutrixon)
 
 ## Installation and Setup
 
@@ -95,6 +93,3 @@ npm run dev
 ## Hackathon Submission
 
 **Project:** Nutrixon
-
-Nutrixon aims to make food product information easier to review through a centralized platform for product verification and nutrition information.
-
