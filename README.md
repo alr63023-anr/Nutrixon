@@ -30,6 +30,7 @@ Nutrixon provides a web-based platform for reviewing food product information, i
 - CSS
 - React and Vite, if used in the project
 
+
 ## Live Application
 
 [https://nutrixon-w2np.vercel.app/](https://nutrixon-w2np.vercel.app/)
@@ -81,14 +82,6 @@ To create a production build, run:
 ```bash
 npm run build
 ```
-
-## Hackathon Submission
-
-**Project:** Nutrixon
-
-Nutrixon aims to make food product information easier to review through a centralized platform for product verification and nutrition information.
-
-
 ## Development
 
 Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
